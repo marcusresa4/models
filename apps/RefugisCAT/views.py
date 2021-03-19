@@ -10,11 +10,23 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .models import Refugi
 from django.http import HttpResponse
+import json
+from django.db.models import Q
 
 def welcome(request):
     #Si estàs identificat, vas a la pantalla d'inici
-    if request.GET.get("Buscar")=="Buscar":
-        return render(request, "plantilles/buscar.html")
+    queryset=request.GET.get('buscar')
+    print(queryset)
+    if queryset:  
+        refugis = Refugi.objects.filter(
+            Q(descripcio_Refugi__icontains = queryset)
+        ).distinct()
+        print(refugis)
+        template=loader.get_template("plantilles/buscar.html")
+        context={
+            'refugis':refugis,
+        }
+        return HttpResponse(template.render(context,request))
     else:
         if request.user.is_authenticated:
             return render(request, "plantilles/welcome.html")
@@ -82,8 +94,7 @@ def logout(request):
     do_logout(request)
     return redirect('/')
 
-def buscar(request):
-    print(request)
+    
 
 from django.template import loader
 
@@ -92,7 +103,6 @@ def refugis(request, refugi_id):
     template=loader.get_template("plantilles/refugis.html")
     context={
         'refugis':refugis,
-        'nom_refugi':refugis
     }
     return HttpResponse(template.render(context,request))
     

@@ -1,11 +1,17 @@
 <h1>RefugisCAT</h1>
-<div id="search-3" class="widget widget_search"><h2 class="widget-title">Cercador</h2>
-    <form role="search" method="get" class="search-form" action="http://127.0.0.1:8000/">
-    <label>
-        <span class="screen-reader-text">Buscar:</span>
-        <input type="search" class="search-field" placeholder="Buscar …" value="" name="s">
-    </label>
-    <input type="submit" class="search-submit" name="Buscar" value="Buscar">
+<div class="col-md-12 search">
+    <h2 class="widget-title">Cercador</h2>
+    <form method="get">
+        <div id="custom-search-input">
+            <div class="input-group col-md-12">
+                <input type="text" class="form-control" placeholder="Buscar..."name="buscar"value="buscar">
+                <span class="input group list">
+                    <i class="icon icon-search">
+                        <button type="submit" class="boton btn-success">Buscar</button>
+                    </i>
+                </span>
+            </div>
+        </div>
     </form>
 </div>
 
