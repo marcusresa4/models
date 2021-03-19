@@ -18,9 +18,10 @@ from django.urls import path
 from apps.RefugisCAT import views
 urlpatterns = [
     path('administrarcomptes/', admin.site.urls),
-    path('', views.welcome),
+    path('main/', views.welcome),
     path('register/', views.register),
-    path('login/', views.login),
+    path('', views.login),
     path('logout/', views.logout),
-    path('refugis/<int:refugi_id>/',views.refugis)
+    path('refugis/<int:refugi_id>/',views.refugis),
+    path('refugis/<int:refugi_id>/ressenya',views.ressenya)
 ]

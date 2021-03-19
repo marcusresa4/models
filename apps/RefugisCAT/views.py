@@ -28,10 +28,7 @@ def welcome(request):
         }
         return HttpResponse(template.render(context,request))
     else:
-        if request.user.is_authenticated:
-            return render(request, "plantilles/welcome.html")
-        # Sino estàs identificat, et redirecciona a la pagina de login
-        return redirect('/login')
+        return render(request, "plantilles/welcome.html")
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -56,7 +53,7 @@ def register(request):
             #Si es crea correctament, es logueja i redirecciona automàticament a la pàgina d'inici
             if user is not None:
                 do_login(request, user)
-                return redirect('/')
+                return redirect('/main')
 
     return render(request, "plantilles/register.html", {'form': form})
 
@@ -78,10 +75,10 @@ def login(request):
             # Si existeix un usuari, es logueja i redirecciona automàticament a la pàgina d'inici
             if user is not None:
                 do_login(request, user)
-                return redirect('/')
+                return redirect('/main')
     else:	
         if request.GET.get("Entra sense registrar-se")=="Entra sense registrar-se":
-            return render(request, "plantilles/welcome.html", {'form': form})
+            return redirect('/main')
         else:
             return render(request, "plantilles/login.html", {'form': form})
 
@@ -106,3 +103,6 @@ def refugis(request, refugi_id):
     }
     return HttpResponse(template.render(context,request))
     
+@login_required
+def ressenya(request,refugi_id):
+    return render(request, "plantilles/ressenya.html")

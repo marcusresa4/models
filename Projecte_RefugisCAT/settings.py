@@ -121,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#When login_required, we will return to this path if not logged
+
+LOGIN_URL = '/'

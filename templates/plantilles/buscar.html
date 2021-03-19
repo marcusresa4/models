@@ -1,12 +1,13 @@
 <h1>Cerques</h1>
 {% if refugis %}
     <ul>
+        
     {% for refugi in refugis %}
-        <li><a href="/refugis/{{refugi.id}}/">{{refugi.nom_Refugi}}</a></li>
+        <li><a style="text-decoration:none"  href="/refugis/{{refugi.id}}/">{{refugi.nom_Refugi}}
         <h4>Descripció</h4>
         <p>{{refugi.descripcio_Refugi}}</p>
         <h4>Valoració</h4>
-        <p>{{refugi.valoracio_Refugi}}</p>
+        <p>{{refugi.valoracio_Refugi}}</p></a></li>
     {% endfor %}
     </ul>
 {% else %}
