@@ -8,14 +8,18 @@ from django.contrib.auth import login as do_login
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
+from .models import Refugi
+from django.http import HttpResponse
 
 def welcome(request):
     #Si estàs identificat, vas a la pantalla d'inici
-    if request.user.is_authenticated:
-        return render(request, "plantilles/welcome.html")
-    # Sino estàs identificat, et redirecciona a la pagina de login
-    return redirect('/login')
+    if request.GET.get("Buscar")=="Buscar":
+        return render(request, "plantilles/buscar.html")
+    else:
+        if request.user.is_authenticated:
+            return render(request, "plantilles/welcome.html")
+        # Sino estàs identificat, et redirecciona a la pagina de login
+        return redirect('/login')
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -77,3 +81,18 @@ def logout(request):
     # Es finalitza sessió i es redirecciona a la portada
     do_logout(request)
     return redirect('/')
+
+def buscar(request):
+    print(request)
+
+from django.template import loader
+
+def refugis(request, refugi_id):
+    refugis=Refugi.objects.filter(id=refugi_id)
+    template=loader.get_template("plantilles/refugis.html")
+    context={
+        'refugis':refugis,
+        'nom_refugi':refugis
+    }
+    return HttpResponse(template.render(context,request))
+    

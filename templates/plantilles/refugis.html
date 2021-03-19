@@ -1,0 +1,15 @@
+{% if refugis %}
+    <ul>
+    {% for refugi in refugis %}
+        <h1>{{refugi.nom_Refugi}}</h1>
+        <h2>Coordenades</h2>
+        <p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
+        <h2>Descripció</h2>
+        <p>{{refugi.descripcio_Refugi}}</p>
+        <h2>Valoració</h2>
+        <p>{{refugi.valoracio_Refugi}}</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hi ha refugi amb aquest id</p>
+{% endif %}

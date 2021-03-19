@@ -22,5 +22,6 @@ urlpatterns = [
     path('register/', views.register),
     path('login/', views.login),
     path('logout/', views.logout),
-
+    path('buscar/', views.buscar),
+    path('refugis/<int:refugi_id>/',views.refugis)
 ]
