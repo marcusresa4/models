@@ -8,6 +8,18 @@
         <p>{{refugi.descripcio_Refugi}}</p>
         <h2>Valoració</h2>
         <p>{{refugi.valoracio_Refugi}}</p>
+        <h2>Ressenyes</h2>
+        {% for ressenya in ressenyes %}
+            <div class="box-blue">
+                <p><b>Ressenya </b>{{ressenya.id}}</p>
+                <p><b>Autor: </b>{{ressenya.nom_Autor}}</p>
+                <p><b>Títol: </b>{{ressenya.titol_Ressenya}}</p>
+                <p><b>Text: </b>{{ressenya.text_Ressenya}}</p>
+                <p><b>Valoració: </b>{{ressenya.valoracio}}</p>
+                <p><b>Data: </b>{{ressenya.data_Creacio}}</p>
+            </div>
+            <br><br><br><br><br>
+        {% endfor %}
         <a href="/refugis/{{refugi.id}}/ressenya">Editar Ressenya</a>
     {% endfor %}
     </ul>

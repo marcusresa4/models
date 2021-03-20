@@ -8,11 +8,11 @@ from django.contrib.auth import login as do_login
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .models import Refugi
+from .models import Refugi, Ressenya
 from django.http import HttpResponse
 import json
 from django.db.models import Q
-
+from django.urls import reverse
 def welcome(request):
     #Si estàs identificat, vas a la pantalla d'inici
     queryset=request.GET.get('buscar')
@@ -97,12 +97,35 @@ from django.template import loader
 
 def refugis(request, refugi_id):
     refugis=Refugi.objects.filter(id=refugi_id)
+    ressenyes=Ressenya.objects.filter(refugi=refugi_id)
     template=loader.get_template("plantilles/refugis.html")
     context={
         'refugis':refugis,
+        'ressenyes':ressenyes,
     }
     return HttpResponse(template.render(context,request))
     
 @login_required
 def ressenya(request,refugi_id):
-    return render(request, "plantilles/ressenya.html")
+    refugis=Refugi.objects.filter(id=refugi_id)
+    ressenyes=Ressenya.objects.filter(refugi=refugi_id)
+    template=loader.get_template("plantilles/ressenya.html")
+    context={
+        'refugis':refugis,
+    }
+    if request.method == "POST":
+        autor=request.POST.get('autor')
+        titol=request.POST.get('titol')
+        descripcio=request.POST.get('descripcio')
+        valoracions=request.POST.get('valoracio')
+        nova_ressenya=Ressenya()
+        nova_ressenya.nom_Autor=autor
+        nova_ressenya.titol_Ressenya=titol
+        nova_ressenya.text_Ressenya=descripcio
+        nova_ressenya.valoracio=valoracions
+        nova_ressenya.refugi=Refugi.objects.get(id=refugi_id)
+        nova_ressenya.save()
+
+        
+
+    return HttpResponse(template.render(context,request))
