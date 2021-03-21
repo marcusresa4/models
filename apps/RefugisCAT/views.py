@@ -105,4 +105,12 @@ def refugis(request, refugi_id):
         'refugis':refugis,
     }
     return HttpResponse(template.render(context,request))
+
+def serveis_refugi(request, refugi_id):
+    refugis = Refugi.objects.filter(id=refugi_id)
+    template = loader.get_template("serveis.html")
+    context = {
+        'refugis': refugis,
+    }
+    return HttpResponse(template.render(context, request))
     

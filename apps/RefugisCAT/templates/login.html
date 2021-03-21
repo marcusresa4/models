@@ -71,9 +71,7 @@ top: 170px;
 <form method="POST">
     {{ form.as_p }}
     {% csrf_token %}
-    <p align="center" style="top: 170px;margin-right:330px;">
     <button type="submit" class="btn btn-success">Inicia sessió</button>
-    </p>
 </form>
     <p align="center" style="top: 20px;">
     <a href="{% url 'welcome' %}"><button type="button" class="btn btn-primary btn-lg">Entra sense registrar-te</button></a>

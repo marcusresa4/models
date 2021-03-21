@@ -60,8 +60,11 @@ p {
 <div class="semitrans">
   <h1>Coordenades</h1>
   <p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
-  <h2>Valoració</h2>
+  <h1>Valoració</h1>
   <p>La valoració mitja dels usuaris per aquest refugi és de {{refugi.valoracio_Refugi}}</p>
+    <h1>Serveis</h1>
+  <p>Clica en el següent botó per obtenir informació sobre els serveis que ofereix aquest refugi</p>
+    <a href="/refugis/{{refugi.id}}/serveis"><button type="button" class="btn btn-primary active">Serveis</button></a>
 </div>
 
     {% endfor %}

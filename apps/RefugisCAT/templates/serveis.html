@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<style>
+body::after {
+  content: "";
+  background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+img {
+  border: 5px solid #555;
+}
+
+div {
+    display:block;
+margin-left:600px;
+margin-right:auto;
+position: relative;
+top: 10px;
+  max-width: 700px;
+  min-width: 100px;
+}
+p {
+margin-left:10px;
+margin-right:auto;
+position: relative;
+top: 10px;
+  max-width: 750px;
+  min-width: 130px;
+}
+</style>
+{% if user.is_authenticated %}
+</head>
+<nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx; border:none">
+    {% endwith %}
+    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
+</nav>
+{% else %}
+    <nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx;border:none">
+    {% endwith %}
+    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
+</nav>
+    {% endif %}
+{% endblock %}

@@ -13,6 +13,10 @@ body::after {
   position: absolute;
   z-index: -1;
 }
+img {
+  border: 5px solid #555;
+}
+
 div {
     display:block;
 margin-left:600px;
@@ -23,7 +27,7 @@ top: 10px;
   min-width: 100px;
 }
 p {
-margin-left:auto;
+margin-left:10px;
 margin-right:auto;
 position: relative;
 top: 10px;
@@ -35,7 +39,7 @@ top: 10px;
 </head>
 <nav class="navbar navbar-light bg-light">
     {% with url="img/icon_ref.png" %}
-        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx">
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx; border:none">
     {% endwith %}
     RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
@@ -43,34 +47,36 @@ top: 10px;
 {% else %}
     <nav class="navbar navbar-light bg-light">
     {% with url="img/icon_ref.png" %}
-        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx">
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx;border:none">
     {% endwith %}
     RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
 </nav>
 {% endif %}
-<h1>Cerques coincidents</h1>
+<h1 style="text-align:center;">Cerques coincidents</h1>
 {% if refugis %}
     <ul>
     {% for refugi in refugis %}
-        <li><a href="/refugis/{{refugi.id}}/">{{refugi.nom_Refugi}}</a></li>
-        <h4>Descripció</h4>
-        <p>{{refugi.descripcio_Refugi}}</p>
-        <h4>Valoració</h4>
-        <p>{{refugi.valoracio_Refugi}}</p>
+        <p>
+            {% with url=refugi.imatge %}
+            <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="float:left;width:100px;height:70px;">
+            {% endwith %}
+            <h3>Refugi {{ refugi.nom_Refugi }}</h3>
+            <a href="/refugis/{{refugi.id}}/"><button type="button" class="btn btn-primary active">Descobreix-lo!</button></a>
+        </p>
     {% endfor %}
     </ul>
 {% else %}
     <h2 style="text-align:center;">No hi ha cap refugi que compleixi aquesta característica</h2>
-    <p class="aligncenter">
+     <div style="text-align: center;margin-left:350px;margin-right:auto;">
     {% with url="img/no_resultats.jpeg" %}
-        <img src= "{% static url %}" alt="Sense resultats" style="width: 800px; height: 400px;" >
+       <img src= "{% static url %}" alt="Sense resultats" style="width: 750px; height: 350px;" >
     {% endwith %}
-    <p/>
+    </div>
+{% endif %}
     <div id="header">
     <ul>
-        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary">Busca un altre refugi</button></a>
+        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary" style="margin-top: 25px;" ">Busca un altre refugi</button></a>
     </ul>
   </div>
-{% endif %}
 {% endblock %}

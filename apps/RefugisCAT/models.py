@@ -6,9 +6,8 @@ class Refugi(models.Model):
     coordenades = models.CharField(max_length=100)
     descripcio_Refugi = models.TextField()
     valoracio_Refugi = models.FloatField()
-    members = models.ManyToManyField('Servei', related_name='serveis', blank=True, through='PreuServeiAlRefugi')
+    serveis = models.ManyToManyField('Servei', related_name='serveis', blank=True, through='PreuServeiAlRefugi')
     imatge = models.CharField(max_length=100)
-    # reference_link = models.URLField(max_length=250)
 
     def __str__(self):
         return self.nom_Refugi
@@ -16,6 +15,7 @@ class Refugi(models.Model):
 
 class Servei(models.Model):
     nom_Servei = models.CharField(max_length=70)
+    imatge = models.CharField(max_length=100)
 
     def __str__(self):
         return self.nom_Servei
