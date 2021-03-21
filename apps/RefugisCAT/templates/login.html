@@ -24,7 +24,7 @@ top: 100px;
   min-width: 100px;
 }
 p {
-margin-left:auto;
+margin-left:600px;
 margin-right:130px;
 position: relative;
 top: 150px;
@@ -39,8 +39,9 @@ top: 170px;
   max-width: 1000px;
   min-width: 130px;
 }
-
-
+.text-center {
+  text-align: center;
+}
 </style>
 </head>
 <nav class="navbar navbar-light bg-light">
@@ -71,7 +72,11 @@ top: 170px;
 <form method="POST">
     {{ form.as_p }}
     {% csrf_token %}
-    <button type="submit" class="btn btn-success">Inicia sessió</button>
+    <br><br><br>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">Inicia sessió</button>
+    </div>
+    
 </form>
     <p align="center" style="top: 20px;">
     <a href="{% url 'welcome' %}"><button type="button" class="btn btn-primary btn-lg">Entra sense registrar-te</button></a>

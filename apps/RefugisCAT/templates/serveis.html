@@ -34,22 +34,30 @@ top: 10px;
   max-width: 750px;
   min-width: 130px;
 }
+a { 
+color: black;
+text-decoration:none;
+}
 </style>
 {% if user.is_authenticated %}
 </head>
 <nav class="navbar navbar-light bg-light">
     {% with url="img/icon_ref.png" %}
-        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx; border:none">
+      <a href="{% url 'welcome' %}">
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
+      </a>
     {% endwith %}
-    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+    <a href="{% url 'welcome' %}" style="text-decoration:none;">RefugisCAT</a><i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
 </nav>
 {% else %}
     <nav class="navbar navbar-light bg-light">
     {% with url="img/icon_ref.png" %}
-        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx;border:none">
+    <a href="{% url 'welcome' %}">
+      <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
+    </a>
     {% endwith %}
-    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+    <a href="{% url 'welcome' %}" style="text-decoration:none;">RefugisCAT</a><i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
 </nav>
 {% endif %}
