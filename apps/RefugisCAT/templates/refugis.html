@@ -75,16 +75,8 @@ text-decoration:none;
   <p>De moment, no s'ha rebut cap valoració per part dels usuaris</p>
   {% endif %}
   <h1>Ressenyes</h1>
-  {% for ressenya in ressenyes %}
-      <div class="box-blue">
-          <p><b>Autor: </b>{{ressenya.nom_Autor}}</p>
-          <p><b>Títol: </b>{{ressenya.titol_Ressenya}}</p>
-          <p><b>Text: </b>{{ressenya.text_Ressenya}}</p>
-          <p><b>Valoració: </b>{{ressenya.valoracio}}</p>
-          <p><b>Data: </b>{{ressenya.data_Creacio}}</p>
-      </div>
-  {% endfor %}
-  <a href="/refugis/{{refugi.id}}/ressenya"><button type="button" class="btn btn-primary active">Escriure Ressenya</button></a>
+  <a href="/refugis/{{refugi.id}}/ressenyes"><button type="button" class="btn btn-primary active">Veure les ressenyes d'aquest refugi</button></a>
+  <a href="/refugis/{{refugi.id}}/editar_ressenya"><button type="button" class="btn btn-primary active">Escriure Ressenya</button></a>
     <h1>Serveis</h1>
   <p>Clica en el següent botó per obtenir informació sobre els serveis que ofereix aquest refugi</p>
     <a href="/refugis/{{refugi.id}}/serveis"><button type="button" class="btn btn-primary active">Serveis</button></a>

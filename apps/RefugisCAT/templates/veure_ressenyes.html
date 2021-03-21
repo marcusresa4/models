@@ -13,24 +13,39 @@ body::after {
   position: absolute;
   z-index: -1;
 }
+img {
+  border: 5px solid #555;
+}
+
+div {
+    display:block;
+margin-left:20px;
+margin-right:auto;
+position: relative;
+top: 10px;
+  max-width: 700px;
+  min-width: 100px;
+}
 p {
-margin-left:600px;
+margin-left:10px;
 margin-right:auto;
 position: relative;
 top: 10px;
   max-width: 750px;
   min-width: 130px;
 }
-
+a { 
+color: black;
+text-decoration:none;
+}
 </style>
-
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 </head>
 <nav class="navbar navbar-light bg-light">
     {% with url="img/icon_ref.png" %}
-    <a href="{% url 'welcome' %}">
-      <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
-    </a>
+      <a href="{% url 'welcome' %}">
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
+      </a>
     {% endwith %}
     <a href="{% url 'welcome' %}" style="text-decoration:none;">RefugisCAT</a><i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
@@ -46,25 +61,24 @@ top: 10px;
         <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
 </nav>
 {% endif %}
-
-
-<h1 style="text-align:center;">Editar Ressenya</h1>
-<body>
-    {% for refugi in refugis %}
-        <form action="/refugis/{{refugi.id}}/editar_ressenya" method="POST">{% csrf_token %}
-            <p>Autor: <input type="text" name="autor"></p>
-            <p>Títol: <input type="text" name="titol"></p>
-            <p>Descripció: </p>
-            <p><textarea name="descripcio" id="" cols="30" rows="10"></textarea></p>
-            <p>Valoració: <input type="text" name="valoracio"></p>
-            <div class="text-center">
-            <button type="submit" class="btn btn-success">Enviar</button>
-            </div>
-        </form>
-        <p align="center" style="top: 30px;margin-left:440px;">
-        <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna a les descripció del refugi</button></a>
-        </p>
-    {% endfor %}
-
-</body>
+{% if refugis %}
+  {% for refugi in refugis %}
+  <div class="semitrans">
+    <h1>Ressenyes del refugi {{refugi.nom_Refugi}}</h1>
+    {% for ressenya in ressenyes %}
+      <div class="box-blue">
+          <p><b>Autor: </b>{{ressenya.nom_Autor}}</p>
+          <p><b>Títol: </b>{{ressenya.titol_Ressenya}}</p>
+          <p><b>Text: </b>{{ressenya.text_Ressenya}}</p>
+          <p><b>Valoració: </b>{{ressenya.valoracio}}</p>
+          <p><b>Data: </b>{{ressenya.data_Creacio}}</p>
+      </div>
+  {% endfor %}
+    <br>
+    <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna al refugi</button></a>
+  </div>
+  {% endfor %}
+{% else %}
+<p>No hi ha serveis en aquest refugi</p>
+{% endif %}
 {% endblock %}

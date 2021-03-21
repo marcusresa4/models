@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.login, name="login"),
     path('logout/', views.logout, name = "logout"),
     path('refugis/<int:refugi_id>/',views.refugis),
-    path('refugis/<int:refugi_id>/ressenya',views.ressenya),
+    path('refugis/<int:refugi_id>/ressenyes',views.veure_ressenyes),
+    path('refugis/<int:refugi_id>/editar_ressenya',views.ressenya),
     path('refugis/<int:refugi_id>/serveis',views.serveis_refugi),
 ]

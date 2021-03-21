@@ -105,9 +105,11 @@ def refugis(request, refugi_id):
         valoracio_total+=ressenya.valoracio
         num_ressenyes+=1
     if num_ressenyes>0:
-        valoracio=valoracio_total/num_ressenyes
+        valoracio_final=valoracio_total/num_ressenyes
+        valoracio=round(valoracio_final,2)
     else:
         valoracio=""
+    
     template=loader.get_template("refugis.html")
     context={
         'refugis':refugis,
@@ -151,4 +153,15 @@ def ressenya(request,refugi_id):
 
 
 
+    return HttpResponse(template.render(context,request))
+
+def veure_ressenyes(request,refugi_id):
+    refugis=Refugi.objects.filter(id=refugi_id)
+    ressenyes=Ressenya.objects.filter(refugi=refugi_id)
+    template=loader.get_template("veure_ressenyes.html")
+    context={
+        'refugis':refugis,
+        'ressenyes':ressenyes,
+    }
+    
     return HttpResponse(template.render(context,request))
