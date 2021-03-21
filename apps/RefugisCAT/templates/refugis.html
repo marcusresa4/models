@@ -62,6 +62,17 @@ p {
   <p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
   <h1>Valoració</h1>
   <p>La valoració mitja dels usuaris per aquest refugi és de {{refugi.valoracio_Refugi}}</p>
+  <h1>Ressenyes</h1>
+  {% for ressenya in ressenyes %}
+      <div class="box-blue">
+          <p><b>Autor: </b>{{ressenya.nom_Autor}}</p>
+          <p><b>Títol: </b>{{ressenya.titol_Ressenya}}</p>
+          <p><b>Text: </b>{{ressenya.text_Ressenya}}</p>
+          <p><b>Valoració: </b>{{ressenya.valoracio}}</p>
+          <p><b>Data: </b>{{ressenya.data_Creacio}}</p>
+      </div>
+  {% endfor %}
+  <a href="/refugis/{{refugi.id}}/ressenya"><button type="button" class="btn btn-primary active">Editar Ressenya</button></a>
     <h1>Serveis</h1>
   <p>Clica en el següent botó per obtenir informació sobre els serveis que ofereix aquest refugi</p>
     <a href="/refugis/{{refugi.id}}/serveis"><button type="button" class="btn btn-primary active">Serveis</button></a>

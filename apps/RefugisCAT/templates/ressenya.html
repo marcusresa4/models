@@ -1,0 +1,14 @@
+<h1>Editar Ressenya</h1>
+<body>
+    {% for refugi in refugis %}
+        <form action="/refugis/{{refugi.id}}/ressenya" method="POST">{% csrf_token %}
+            <p>Autor: <input type="text" name="autor"></p>
+            <p>Títol: <input type="text" name="titol"></p>
+            <p>Descripció: <textarea name="descripcio" id="" cols="30" rows="10"></textarea></p>
+            <p>Valoració: <input type="text" name="valoracio"></p>
+            <input type="submit" value="Enviar">
+        </form>
+        <a href="/refugis/{{refugi.id}}">Torna a les descripció dels refugis</a>
+    {% endfor %}
+
+</body>

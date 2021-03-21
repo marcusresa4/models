@@ -52,5 +52,26 @@ top: 10px;
     RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
         <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
 </nav>
-    {% endif %}
+{% endif %}
+{% if refugis %}
+  {% for refugi in refugis %}
+  <div class="semitrans">
+    <h1>Serveis</h1>
+    {% for servei in serveis %}
+      <p><b>Nom: </b>{{servei.nom_Servei}}</p>
+      <p><b>Imatge: </b>Aquí hi ha d'anar la imatge del servei</p>    
+      
+        {% if preus_serveis %}
+          {% for preu in preus_serveis %}
+            <p>El preu de {{servei.nom_Servei}} al refugi {{refugi.nom_Refugi}} és de {{preu.preu_Servei}} </p>      
+          {% endfor %}
+        {% endif %}
+    {% endfor %}
+    
+    <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna al refugi</button></a>
+  </div>
+  {% endfor %}
+{% else %}
+<p>No hi ha serveis en aquest refugi</p>
+{% endif %}
 {% endblock %}
