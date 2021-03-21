@@ -69,7 +69,11 @@ text-decoration:none;
   <h1>Coordenades</h1>
   <p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
   <h1>Valoració</h1>
-  <p>La valoració mitja dels usuaris per aquest refugi és de {{refugi.valoracio_Refugi}}</p>
+  {% if valoracio %}
+    <p>La valoració mitja dels usuaris per aquest refugi és de {{valoracio}}</p>
+  {% else %}
+  <p>De moment, no s'ha rebut cap valoració per part dels usuaris</p>
+  {% endif %}
   <h1>Ressenyes</h1>
   {% for ressenya in ressenyes %}
       <div class="box-blue">

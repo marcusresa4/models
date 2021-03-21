@@ -99,10 +99,20 @@ from django.template import loader
 def refugis(request, refugi_id):
     refugis=Refugi.objects.filter(id=refugi_id)
     ressenyes=Ressenya.objects.filter(refugi=refugi_id)
+    valoracio_total=0
+    num_ressenyes=0
+    for ressenya in ressenyes:
+        valoracio_total+=ressenya.valoracio
+        num_ressenyes+=1
+    if num_ressenyes>0:
+        valoracio=valoracio_total/num_ressenyes
+    else:
+        valoracio=""
     template=loader.get_template("refugis.html")
     context={
         'refugis':refugis,
         'ressenyes':ressenyes,
+        'valoracio':valoracio
     }
     return HttpResponse(template.render(context,request))
 
