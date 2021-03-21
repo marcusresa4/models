@@ -22,14 +22,14 @@ def welcome(request):
             Q(descripcio_Refugi__icontains = queryset)
         ).distinct()
         print(refugis)
-        template=loader.get_template("plantilles/buscar.html")
+        template=loader.get_template("buscar.html")
         context={
             'refugis':refugis,
         }
         return HttpResponse(template.render(context,request))
     else:
         if request.user.is_authenticated:
-            return render(request, "plantilles/welcome.html")
+            return render(request, "welcome.html")
         # Sino estàs identificat, et redirecciona a la pagina de login
         return redirect('/login')
 
@@ -58,7 +58,7 @@ def register(request):
                 do_login(request, user)
                 return redirect('/')
 
-    return render(request, "plantilles/register.html", {'form': form})
+    return render(request, "register.html", {'form': form})
 
 def login(request):
     # Es crea el formulari d'autentificació
@@ -81,11 +81,11 @@ def login(request):
                 return redirect('/')
     else:	
         if request.GET.get("Entra sense registrar-se")=="Entra sense registrar-se":
-            return render(request, "plantilles/welcome.html", {'form': form})
+            return render(request, "welcome.html", {'form': form})
         else:
-            return render(request, "plantilles/login.html", {'form': form})
+            return render(request, "login.html", {'form': form})
 
-    return render(request, "plantilles/login.html", {'form': form})
+    return render(request, "login.html", {'form': form})
 
 from django.contrib.auth import logout as do_logout
 
@@ -100,7 +100,7 @@ from django.template import loader
 
 def refugis(request, refugi_id):
     refugis=Refugi.objects.filter(id=refugi_id)
-    template=loader.get_template("plantilles/refugis.html")
+    template=loader.get_template("refugis.html")
     context={
         'refugis':refugis,
     }

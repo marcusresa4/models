@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Projecte_RefugisCAT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': ['Projecte_RefugisCAT/templates/', 'apps/RefugisCAT/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {

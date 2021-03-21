@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<style>
+body::after {
+  content: "";
+  background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+div {
+  max-width: 730px;
+  min-width: 130px;
+}
+p {
+  max-width: 750px;
+  min-width: 130px;
+}
+</style>
+{% if user.is_authenticated %}
+</head>
+<nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx">
+    {% endwith %}
+    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
+</nav>
+{% else %}
+    <nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx">
+    {% endwith %}
+    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
+</nav>
+{% endif %}
+{% if refugis %}
+    <ul>
+    {% for refugi in refugis %}
+        <div class="fullscreen nopadding">
+  <div class="header">
+    <h1>Refugi {{refugi.nom_Refugi}}</h1>
+  </div>
+</div>
+{% with url=refugi.imatge %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="float:right;width:600px;height:500px;">
+    {% endwith %}
+<div class="white">
+  <a id="test"></a>
+  <h1>Descripció</h1>
+  <p style="text-align:justify;">{{refugi.descripcio_Refugi}}</p>
+</div>
+
+<div class="semitrans">
+  <h1>Coordenades</h1>
+  <p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
+  <h2>Valoració</h2>
+  <p>La valoració mitja dels usuaris per aquest refugi és de {{refugi.valoracio_Refugi}}</p>
+</div>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hi ha refugi amb aquest id</p>
+{% endif %}
+    <div id="header">
+    <ul>
+        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary">Busca un altre refugi</button></a>
+    </ul>
+  </div>
+{% endblock %}

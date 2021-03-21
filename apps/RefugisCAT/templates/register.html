@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<style>
+body::after {
+  content: "";
+  background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+div {
+    display:block;
+margin-left:auto;
+margin-right:auto;
+position: relative;
+top: 100px;
+  max-width: 700px;
+  min-width: 100px;
+}
+p {
+margin-left:auto;
+margin-right:130px;
+position: relative;
+top: 150px;
+  max-width: 750px;
+  min-width: 130px;
+}
+a {
+margin-left:auto;
+margin-right:400px;
+position: relative;
+top: 170px;
+  max-width: 1000px;
+  min-width: 130px;
+}
+
+
+</style>
+</head>
+<nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+        <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx">
+    {% endwith %}
+    RefugisCAT<i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+</nav>
+<header>
+<div>
+<h1 style="text-align:center;margin-right:50px;">Registrar usuari</h1>
+</div>
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p align="center" style="top: 200px;margin-right:330px;">
+    <button type="submit" class="btn btn-success btn-lg">Registrar</button>
+    <p/>
+    <p align="center" style="top: 50px;">
+        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary btn-lg">Torna enrere</button></a>
+    </p>
+</form>
+{% endblock %}

@@ -7,8 +7,7 @@ class Refugi(models.Model):
     descripcio_Refugi = models.TextField()
     valoracio_Refugi = models.FloatField()
     members = models.ManyToManyField('Servei', related_name='serveis', blank=True, through='PreuServeiAlRefugi')
-
-    # preview_image = models.FilePathField(path="/img")
+    imatge = models.CharField(max_length=100)
     # reference_link = models.URLField(max_length=250)
 
     def __str__(self):

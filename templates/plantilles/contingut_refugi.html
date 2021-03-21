@@ -1,0 +1,34 @@
+<div class="fullscreen nopadding">
+  <div id="header">
+    <img src="/static/refugi_josep.jpeg" width="50px" />
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+    </ul>
+  </div>
+  <div class="header">
+    <h1>Refugi {{ refugi.nom_Refugi }}</h1>
+  </div>
+</div>
+
+<div class="white nopadding more">
+      <a id="more">&#x25BC; Descobreix-lo! &#x25BC;</a>
+</div>
+
+<div class="white">
+  <a id="test"></a>
+  <h1>Descripció</h1>
+  <img class="floatleft" src="http://www.2020site.org/trees/images/PineNeedles.jpg" />
+  <p>{{ refugi.descripcio_Refugi }}</p>
+  <img class="floatright" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ilex-aquifolium_%28Europaeische_Stechpalme-1.jpg/220px-Ilex-aquifolium_%28Europaeische_Stechpalme-1.jpg" />
+</div>
+
+<div class="semitrans">
+  <h1>Coordenades</h1>
+<p>Les coordenades d'aquest refugi són: {{refugi.coordenades}}</p>
+</div>
+
+<div class="semitrans">
+  <h1>Valoració</h1>
+  <p>La valoració mitja dels usuaris de RefugisCAT és de: {{ refugi.valoracio_Refugi }}</p>
+</div>

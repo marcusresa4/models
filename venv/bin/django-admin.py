@@ -1,4 +1,4 @@
-#!/Users/marcresaenrich/Desktop/4tcurs/2_quatri/models/Projecte_RefugisCAT/venv/bin/python
+#!/Users/marcresaenrich/Desktop/4tcurs/2_quatri/models/models/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
