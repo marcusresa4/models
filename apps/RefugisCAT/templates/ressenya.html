@@ -1,14 +1,70 @@
-<h1>Editar Ressenya</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<style>
+body::after {
+  content: "";
+  background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+p {
+margin-left:600px;
+margin-right:auto;
+position: relative;
+top: 10px;
+  max-width: 750px;
+  min-width: 130px;
+}
+
+</style>
+
+    {% if user.is_authenticated %}
+</head>
+<nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+    <a href="{% url 'welcome' %}">
+      <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
+    </a>
+    {% endwith %}
+    <a href="{% url 'welcome' %}" style="text-decoration:none;">RefugisCAT</a><i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary ">Surt de la sessió</button></a>
+</nav>
+{% else %}
+    <nav class="navbar navbar-light bg-light">
+    {% with url="img/icon_ref.png" %}
+    <a href="{% url 'welcome' %}">
+      <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="width: 80px;height: 5ppx"  href="{% url 'welcome' %}">
+    </a>
+    {% endwith %}
+    <a href="{% url 'welcome' %}" style="text-decoration:none;">RefugisCAT</a><i>&nbsp;&nbsp;Descobreix els refugis de Catalunya!</i>
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary ">Inicia sessió</button></a>
+</nav>
+{% endif %}
+
+
+<h1 style="text-align:center;">Editar Ressenya</h1>
 <body>
     {% for refugi in refugis %}
         <form action="/refugis/{{refugi.id}}/ressenya" method="POST">{% csrf_token %}
             <p>Autor: <input type="text" name="autor"></p>
             <p>Títol: <input type="text" name="titol"></p>
-            <p>Descripció: <textarea name="descripcio" id="" cols="30" rows="10"></textarea></p>
+            <p>Descripció: </p>
+            <p><textarea name="descripcio" id="" cols="30" rows="10"></textarea></p>
             <p>Valoració: <input type="text" name="valoracio"></p>
-            <input type="submit" value="Enviar">
+            <div class="text-center">
+            <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
         </form>
-        <a href="/refugis/{{refugi.id}}">Torna a les descripció dels refugis</a>
+        <p align="center" style="top: 30px;margin-left:440px;">
+        <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna a les descripció del refugi</button></a>
+        </p>
     {% endfor %}
 
 </body>
+{% endblock %}
