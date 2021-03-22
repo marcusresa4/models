@@ -24,16 +24,16 @@ top: 100px;
   min-width: 100px;
 }
 p {
-margin-left:600px;
+margin-left:380px;
 margin-right:130px;
+text-align: center;
 position: relative;
 top: 150px;
   max-width: 750px;
   min-width: 130px;
 }
 a {
-margin-left:auto;
-margin-right:400px;
+text-align: center;
 position: relative;
 top: 170px;
   max-width: 1000px;
@@ -76,12 +76,13 @@ top: 170px;
     <div class="text-center">
       <button type="submit" class="btn btn-success">Inicia sessió</button>
     </div>
+    <br>
     
 </form>
-    <p align="center" style="top: -50px;margin-left:550px;">
+    <p style="top: -50px;margin-left:394px;">
     <a href="{% url 'welcome' %}"><button type="button" class="btn btn-primary btn-lg">Entra sense registrar-te</button></a>
     </p>
-    <p align="center" style="top: -40px;margin-left:450px;margin-right:450px;">
+    <p style="top: -40px;margin-left:450px;margin-right:450px;">
         <a href="{% url 'register' %}"><button type="button" class="btn btn-secondary btn-lg">No tens compte? Registra't aquí</button></a>
     </p>
 {% endblock %}
