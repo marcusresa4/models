@@ -51,6 +51,11 @@ text-decoration:none;
 {% if refugis %}
     <ul>
     {% for refugi in refugis %}
+        <div id="header">
+    <ul>
+        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary" style="float:right">Busca un altre refugi</button></a>
+    </ul>
+  </div>
         <div class="fullscreen nopadding">
   <div class="header">
     <h1>Refugi {{refugi.nom_Refugi}}</h1>
@@ -87,9 +92,4 @@ text-decoration:none;
 {% else %}
     <p>No hi ha refugi amb aquest id</p>
 {% endif %}
-    <div id="header">
-    <ul>
-        <a href="{% url 'welcome' %}"><button type="button" class="btn btn-secondary">Busca un altre refugi</button></a>
-    </ul>
-  </div>
 {% endblock %}

@@ -65,18 +65,15 @@ text-decoration:none;
   {% for refugi in refugis %}
   <div class="semitrans">
     <h1>Serveis</h1>
-    {% for servei in serveis %}
-      <p><b>Tipus servei: </b>{{servei.nom_Servei}}</p>
-      {% with url=servei.imatge %}
+    {% for preu in preus_serveis %}
+      <p><b>Tipus servei: </b>{{preu.servei.nom_Servei}}</p>
+      {% with url=preu.servei.imatge %}
         <img src= "{% static url %}" class="mr-3 picture_size" alt="logo" style="float:left;width:100px;height:100px;">
         {% endwith %}
-      
-        {% if preus_serveis %}
-          {% for preu in preus_serveis %}
+
               <p><b>Descripció:</b>{{preu.descripcio_Servei}}</p>
-            <p><b>Preu:</b> El preu de {{servei.nom_Servei}} al refugi {{refugi.nom_Refugi}} és de {{preu.preu_Servei}}€ </p>
-          {% endfor %}
-        {% endif %}
+            <p><b>Preu:</b> El preu de {{preu.servei.nom_Servei}} al refugi {{preu.refugi.nom_Refugi}} és de {{preu.preu_Servei}}€ </p>
+    <br>
     {% endfor %}
     
     <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna al refugi</button></a>

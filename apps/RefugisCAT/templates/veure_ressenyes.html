@@ -4,27 +4,24 @@
 <style>
 body::after {
   content: "";
-  background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG);
-  opacity: 0.4;
+    opacity: 0.4;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
   z-index: -1;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/4/4a/P1040089_-_Refugi_de_Saboredo.JPG) repeat-y;
 }
 img {
   border: 5px solid #555;
 }
 
 div {
-    display:block;
-margin-left:20px;
-margin-right:auto;
-position: relative;
-top: 10px;
-  max-width: 700px;
-  min-width: 100px;
+  width: 600px;
+  border: 5px solid black;
+  padding: 30px;
+  margin: 10px;
 }
 p {
 margin-left:10px;
@@ -63,7 +60,9 @@ text-decoration:none;
 {% endif %}
 {% if refugis %}
   {% for refugi in refugis %}
-  <div class="semitrans">
+          <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active" style="float:right;margin-right:550px;">Torna al refugi</button></a>
+
+  <p class="semitrans">
     <h1>Ressenyes del refugi {{refugi.nom_Refugi}}</h1>
     {% for ressenya in ressenyes %}
       <div class="box-blue">
@@ -75,8 +74,7 @@ text-decoration:none;
       </div>
   {% endfor %}
     <br>
-    <a href="/refugis/{{refugi.id}}"><button type="button" class="btn btn-primary active">Torna al refugi</button></a>
-  </div>
+  </p>
   {% endfor %}
 {% else %}
 <p>No hi ha serveis en aquest refugi</p>
