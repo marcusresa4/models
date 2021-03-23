@@ -1,0 +1,1 @@
+Pràctica realitzada pel Marc Resa i en Xavier Trullols
